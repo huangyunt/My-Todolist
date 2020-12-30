@@ -12,12 +12,12 @@ $(function(){
             }
         }
     }
-
+    //获取本地缓存
     function getData() {
         var data = localStorage.getItem('mytodo');
         return data != null ? JSON.parse(data) : [];
     }
-
+    //更新本地缓存
     function saveData() {
         localStorage.setItem('mytodo', JSON.stringify(local));
     }
@@ -31,6 +31,7 @@ $(function(){
         })
         return re;
     }
+    //加载本地缓存
     function load() {
         var num_1 = 0, num_2 = 0;
         $.each(local, function(i, n){
