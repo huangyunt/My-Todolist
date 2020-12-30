@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?wzm6xg');
+    src: url('fonts/icomoon.eot?wzm6xg#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?wzm6xg') format('truetype'),
+        url('fonts/icomoon.woff?wzm6xg') format('woff'),
+        url('fonts/icomoon.svg?wzm6xg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #CDCDCD;
+}
+.header-box{
+    position: relative;
+    background-color: rgb(68, 64, 64);
+    height: 75px;
+}
+.header-label{
+    display: block;
+    width: 20%;
+    /* background-color: red; */
+    margin: 0 auto;
+    color: white;
+    font-size: 25px;
+}
+.header-input{
+    position: absolute;
+    left: 16%;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    width: 250px;
+    height: 25px;
+    border-radius: 5px;
+    outline-width: 0;
+}
+section{
+    margin-left: 17%;
+    margin-top: 10px;
+}
+h2{
+    position: relative;
+    width: 60%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+h2 span{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: white;
+    line-height: 20px;
+    text-align: center;
+    background-color: gray;
+}
+.com{
+    background-color: red;
+    opacity: 0.8;
+}
+li{
+    position: relative;
+    list-style: none;
+    margin-top: 15px;
+    background-color: #fff;
+    height: 32px;
+    width: 60%;
+    border-radius: 5px;
+}
+li input{
+    position: absolute;
+    width: 20px;
+    height: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5px;
+    cursor: pointer;
+}
+li p{
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+    left: 40px;
+    /* font-size: 10px; */
+    /* font-size: large; */
+    line-height: 32px;
+}
+.font{
+    font-family: 'icomoon';
+    position: absolute;
+    font-size: 10px;
+    right: 5px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    opacity: 0.8;
+}
+/* li a{
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 7.5px;
+    background-color: black;
+} */
+.complete li{
+    opacity: 0.5;
+}
+/* @media screen and (max-device-width: 620px) {
+    section {
+        width: 96%;
+        padding: 0 2%;
+    }
+}
+
+@media screen and (min-width: 620px) {
+    section {
+        width: 600px;
+        padding: 0 10px;
+    }
+} */
