@@ -107,6 +107,16 @@ li p{
     cursor: pointer;
     opacity: 0.8;
 }
+.ghost{
+    position: absolute;
+    top: 16px;
+    left: 6.5%;
+    width: 85%;
+    height: 90%;
+    border-radius: 9px;
+    outline: none;
+    border: gray 1px solid;
+}
 /* li a{
     display: block;
     position: absolute;

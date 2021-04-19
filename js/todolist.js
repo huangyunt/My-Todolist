@@ -1,13 +1,13 @@
-$(function(){
+$(function () {
     var going_on_num = 0, complete_num = 0;
     var local = getData();
     load();
-    function complete(int){
-        if(int > 0) {
+    function complete(int) {
+        if (int > 0) {
             $(".tag1").addClass("com");
         }
         else {
-            if($(".tag1").hasClass("com")) {
+            if ($(".tag1").hasClass("com")) {
                 $(".tag1").removeClass("com");
             }
         }
@@ -24,7 +24,7 @@ $(function(){
 
     function find(str) {
         var re = -1;
-        $.each(local, function(i, n) {
+        $.each(local, function (i, n) {
             if (n['content'] == str) {
                 re = i;
             }
@@ -34,14 +34,14 @@ $(function(){
     //加载本地缓存
     function load() {
         var num_1 = 0, num_2 = 0;
-        $.each(local, function(i, n){
+        $.each(local, function (i, n) {
             if (n['done'] == false) {
-                ++ num_1;
+                ++num_1;
                 $(".going-on").prepend("<li><input type='checkbox' name='' id=''><p>" + n['content'] + "</p><div class = 'font'></div></li>");
                 $(".going-on li:first").attr('index', i);
             }
             else {
-                ++ num_2;
+                ++num_2;
                 $(".complete").prepend("<li><input type='checkbox' checked = 'checked' name='' id=''><p>" + n['content'] + "</p><div class = 'font'></div></li>");
                 $(".complete li:first").attr('index', i);
             }
@@ -57,17 +57,17 @@ $(function(){
     // $(".header-input").on("focus", function(event){
     //     event.preventDefault();
     // })
-    $(".header-input").on("keydown", function(event){
-        if(event.keyCode == 13 && $(this).val() == "") {
+    $(".header-input").on("keydown", function (event) {
+        if (event.keyCode == 13 && $(this).val() == "") {
             alert("请输入内容");
         }
         else if (event.keyCode == 13) {
             var p = $("<p></p>");
             var li = $("<li></li>");
-            ++ going_on_num;
+            ++going_on_num;
             complete(going_on_num);
             p.html($(this).val());
-            local.push({content: p.html(), done: false});
+            local.push({ content: p.html(), done: false });
             saveData();
             li.html("<input type='checkbox' name='' id=''><p>" + p.html() + "</p><div class = 'font'></div>");
             $(this).val("");
@@ -76,8 +76,51 @@ $(function(){
         }
     });
 
-    $(".going-on").on("click", "input", function(event){
-        -- going_on_num, ++ complete_num;
+    $(".going-on").on("dblclick", "li", (e) => {
+        var input = $("<input class = 'ghost'>");
+        $(e.currentTarget).append(input);
+        $(".ghost").focus();
+        $('.ghost').on({
+            keydown: function (e) {
+                if (e.keyCode == 13) {
+                    const str = $(this).val();
+                    console.log($(this).siblings()[1]);
+                    const p = $(this).siblings()[1];
+                    const ind = find(p.innerText);
+                    local[ind]['content'] = $(".ghost").val();
+                    saveData();
+                    p.innerText = $(".ghost").val();
+                    $(this).remove();
+                }
+            },
+            blur: function () {
+                // console.log($(".ghost").prev().val());
+                const str = $(this).val();
+                console.log($(this).siblings()[1]);
+                const p = $(this).siblings()[1];
+                const ind = find(p.innerText);
+                local[ind]['content'] = $(".ghost").val();
+                saveData();
+                p.innerText = $(".ghost").val();
+                $(this).remove();
+            }
+        })
+        // $(".ghost").blur(function () {
+        //     // console.log($(".ghost").prev().val());
+        //     const str = $(this).val();
+        //     console.log($(this).siblings()[1]);
+        //     const p = $(this).siblings()[1];
+        //     const ind = find(p.innerText);
+        //     local[ind]['content'] = $(".ghost").val();
+        //     saveData();
+        //     p.innerText = $(".ghost").val();
+        //     $(this).remove();
+        // });
+
+    })
+
+    $(".going-on").on("click", "input", function (event) {
+        --going_on_num, ++complete_num;
         var ind = find($(this).siblings('p').text());
         if (ind != -1) {
             local[ind]['done'] = true;
@@ -93,8 +136,8 @@ $(function(){
         $(".tag2").html(complete_num);
     })
 
-    $(".complete").on("click", "input", function(event){
-        -- complete_num, ++ going_on_num;
+    $(".complete").on("click", "input", function (event) {
+        --complete_num, ++going_on_num;
         var ind = find($(this).siblings('p').text());
         if (ind != -1) {
             local[ind]['done'] = false;
@@ -111,7 +154,7 @@ $(function(){
     })
 
     var flag1 = true, flag2 = true;
-    $(".going-on-h2").on("click", function(){
+    $(".going-on-h2").on("click", function () {
         if (flag1) {
             $(this).siblings(".going-on").stop(false, true).slideUp(500);
             flag1 = false;
@@ -122,7 +165,7 @@ $(function(){
         }
     })
 
-    $(".complete-h2").on("click", function(){
+    $(".complete-h2").on("click", function () {
         if (flag2) {
             $(this).siblings(".complete").stop(false, true).slideUp(500);
             flag2 = false;
@@ -133,7 +176,7 @@ $(function(){
         }
     })
 
-    $("section .going-on").on("click", ".font", function(event){
+    $("section .going-on").on("click", ".font", function (event) {
         //从本地缓存删除li
         var ind = find($(this).siblings('p').text());
         if (ind != -1) {
@@ -142,12 +185,12 @@ $(function(){
         saveData();
         //删除li
         $(this).parent().remove();
-        -- going_on_num;
+        --going_on_num;
         complete(going_on_num);
         $(".tag1").html(going_on_num);
     })
 
-    $("section .complete").on("click", ".font", function(event){
+    $("section .complete").on("click", ".font", function (event) {
         //从本地缓存删除li
         var ind = find($(this).siblings('p').text());
         if (ind != -1) {
@@ -156,7 +199,7 @@ $(function(){
         saveData();
         //删除li
         $(this).parent().remove();
-        -- complete_num;
+        --complete_num;
         $(".tag2").html(complete_num);
     })
 })
