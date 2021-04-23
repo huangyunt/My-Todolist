@@ -84,24 +84,28 @@ $(function () {
             keydown: function (e) {
                 if (e.keyCode == 13) {
                     const str = $(this).val();
-                    console.log($(this).siblings()[1]);
-                    const p = $(this).siblings()[1];
-                    const ind = find(p.innerText);
-                    local[ind]['content'] = $(".ghost").val();
-                    saveData();
-                    p.innerText = $(".ghost").val();
+                    if (str != "") {
+                        console.log($(this).siblings()[1]);
+                        const p = $(this).siblings()[1];
+                        const ind = find(p.innerText);
+                        local[ind]['content'] = $(".ghost").val();
+                        saveData();
+                        p.innerText = $(".ghost").val();
+                    }
                     $(this).remove();
                 }
             },
             blur: function () {
                 // console.log($(".ghost").prev().val());
                 const str = $(this).val();
-                console.log($(this).siblings()[1]);
-                const p = $(this).siblings()[1];
-                const ind = find(p.innerText);
-                local[ind]['content'] = $(".ghost").val();
-                saveData();
-                p.innerText = $(".ghost").val();
+                if (str != "") {
+                    console.log($(this).siblings()[1]);
+                    const p = $(this).siblings()[1];
+                    const ind = find(p.innerText);
+                    local[ind]['content'] = $(".ghost").val();
+                    saveData();
+                    p.innerText = $(".ghost").val();
+                }
                 $(this).remove();
             }
         })
