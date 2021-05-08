@@ -80,43 +80,37 @@ $(function () {
         var input = $("<input class = 'ghost'>");
         $(e.currentTarget).append(input);
         $(".ghost").focus();
+        input.val($(".ghost").focus().siblings().text().slice(0,-1));
+        // console.log($(".ghost").focus().siblings().text());
         $('.ghost').on({
             keydown: function (e) {
                 if (e.keyCode == 13) {
                     const str = $(this).val();
-                    console.log($(this).siblings()[1]);
-                    const p = $(this).siblings()[1];
-                    const ind = find(p.innerText);
-                    local[ind]['content'] = $(".ghost").val();
-                    saveData();
-                    p.innerText = $(".ghost").val();
+                    if (str != "") {
+                        // console.log($(this).siblings()[1]);
+                        const p = $(this).siblings()[1];
+                        const ind = find(p.innerText);
+                        local[ind]['content'] = $(".ghost").val();
+                        saveData();
+                        p.innerText = $(".ghost").val();
+                    }
                     $(this).remove();
                 }
             },
             blur: function () {
                 // console.log($(".ghost").prev().val());
                 const str = $(this).val();
-                console.log($(this).siblings()[1]);
-                const p = $(this).siblings()[1];
-                const ind = find(p.innerText);
-                local[ind]['content'] = $(".ghost").val();
-                saveData();
-                p.innerText = $(".ghost").val();
+                if (str != "") {
+                    // console.log($(this).siblings()[1].innerText);
+                    const p = $(this).siblings()[1];
+                    const ind = find(p.innerText);
+                    local[ind]['content'] = $(".ghost").val();
+                    saveData();
+                    p.innerText = $(".ghost").val();
+                }
                 $(this).remove();
             }
         })
-        // $(".ghost").blur(function () {
-        //     // console.log($(".ghost").prev().val());
-        //     const str = $(this).val();
-        //     console.log($(this).siblings()[1]);
-        //     const p = $(this).siblings()[1];
-        //     const ind = find(p.innerText);
-        //     local[ind]['content'] = $(".ghost").val();
-        //     saveData();
-        //     p.innerText = $(".ghost").val();
-        //     $(this).remove();
-        // });
-
     })
 
     $(".going-on").on("click", "input", function (event) {
