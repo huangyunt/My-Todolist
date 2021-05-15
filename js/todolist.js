@@ -71,7 +71,7 @@ $(function () {
             saveData();
             li.html("<input type='checkbox' name='' id=''><p>" + p.html() + "</p><div class = 'font'></div>");
             $(this).val("");
-            $(".going-on").prepend(li);
+            $(".going-on").append(li);
             $(".tag1").html(going_on_num);
         }
     });
