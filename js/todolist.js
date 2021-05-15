@@ -37,7 +37,7 @@ $(function () {
         $.each(local, function (i, n) {
             if (n['done'] == false) {
                 ++num_1;
-                $(".going-on").prepend("<li><input type='checkbox' name='' id=''><p>" + n['content'] + "</p><div class = 'font'></div></li>");
+                $(".going-on").append("<li><input type='checkbox' name='' id=''><p>" + n['content'] + "</p><div class = 'font'></div></li>");
                 $(".going-on li:first").attr('index', i);
             }
             else {
